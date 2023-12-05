@@ -1,15 +1,7 @@
 module Main where
 
 import Data.Char
-
-getLines :: IO [String]
-getLines = do
-  x <- getLine
-  if x == ""
-  then return []
-  else do
-    xs <- getLines
-    return (x:xs)
+import Parsing
 
 isSpelledDigit :: String -> Int
 isSpelledDigit ('z':'e':'r':'o'    :_) = 0

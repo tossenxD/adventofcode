@@ -1,6 +1,7 @@
 module Main where
 
 import Text.ParserCombinators.Parsec
+import Parsing
 
 data Game = Game Int [Colors] | Error
   deriving (Read, Show, Eq)
@@ -10,27 +11,6 @@ data Colors = C Color | Cs Color Colors
 
 data Color = Blue Int | Red Int | Green Int
   deriving (Read, Show, Eq)
-
-getLines :: IO [String]
-getLines = do
-  x <- getLine
-  if x == ""
-  then return []
-  else do
-    xs <- getLines
-    return (x:xs)
-
-lexeme :: Parser a -> Parser a
-lexeme p = do a <- p; spaces; return a
-
-symbol :: String -> Parser String
-symbol s = lexeme $ string s
-
-digits :: Parser Int
-digits = lexeme $ do ds <- many1 digit; return $ read ds
-
-pChar :: Char -> Parser Char
-pChar = lexeme . char
 
 toGame :: String -> Game
 toGame s = case parseGame s of

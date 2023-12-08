@@ -3,6 +3,7 @@ module Main where
 import Text.ParserCombinators.Parsec
 import Parsing
 import Data.Char
+import Control.Parallel
 
 type Description = (Int, Int, Int)
 type Map = (Int -> Int)
@@ -32,20 +33,25 @@ parseMapping = do dst <- digits; src <- digits; r <- digits; return (dst, src, r
 
 runAlmanac :: Almanac -> [Int]
 runAlmanac ([], _, _, _, _, _, _, _) = []
-runAlmanac (s:ss, m1, m2, m3, m4, m5, m6, m7) = (:) s' $ runAlmanac (ss, m1, m2, m3, m4, m5, m6, m7)
+runAlmanac (s:ss, m1, m2, m3, m4, m5, m6, m7) = par s' (pseq alm' (s':alm'))
   where s' = m7 $ m6 $ m5 $ m4 $ m3 $ m2 $ m1 s
+        alm' = runAlmanac (ss, m1, m2, m3, m4, m5, m6, m7)
 
-expandSeedRange :: Almanac -> Almanac
-expandSeedRange (ns, m1, m2, m3, m4, m5, m6, m7) = (expandSeedRange' ns, m1, m2, m3, m4, m5, m6, m7)
+runAlmanacRange :: Almanac -> Int
+runAlmanacRange (ss, m1, m2, m3, m4, m5, m6, m7) = applyExpansion (m7 . m6 . m5 . m4 . m3 . m2 . m1) ss
 
-expandSeedRange' :: [Int] -> [Int]
-expandSeedRange' [] = []
-expandSeedRange' [n] = [n]
-expandSeedRange' (n1:n2:ns) = [n1..(n1 + n2 - 1)] ++ (expandSeedRange' ns)
+applyExpansion :: (Int -> Int) -> [Int] -> Int
+applyExpansion _ [] = -1
+applyExpansion f [s] = f s
+applyExpansion f (s1:s2:ss)
+  | l2 == -1 = l1
+  | otherwise = min l1 l2
+  where l1 = minimum $ map f [s1..(s1 + s2 - 1)]
+        l2 = applyExpansion f ss
 
 main :: IO ()
 main = do input <- getLinesStop
           case runParser parseAlmanac () "" (collapseInput input) of
                 Right alm -> do print $ minimum $ runAlmanac alm
-                                print $ minimum $ runAlmanac $ expandSeedRange alm
+                                print $ runAlmanacRange alm
                 Left err -> print err

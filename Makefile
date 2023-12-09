@@ -1,4 +1,4 @@
-all: 1 2 3 4 5
+all: 1 2 3 4 5 6
 
 1: 1.hs
 	ghc -o 1 1.hs
@@ -15,5 +15,8 @@ all: 1 2 3 4 5
 5: 5.hs
 	ghc -o 5 5.hs
 
+6: 6.hs
+	ghc -o 6 6.hs
+
 clean:
-	rm -rf *.o *.hi 1 2 3 4 5
+	rm -rf *.o *.hi 1 2 3 4 5 6

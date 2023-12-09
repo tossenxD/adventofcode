@@ -1,6 +1,7 @@
 module Parsing where
 
 import Text.ParserCombinators.Parsec
+import Data.Char
 
 -- Reads lines from stdin
 getLines :: IO [String]
@@ -24,6 +25,12 @@ getLinesStop = do
 collapseInput :: [String] -> String
 collapseInput [] = ""
 collapseInput (l:ls) = l ++ "\n" ++ (collapseInput ls)
+
+removeSpace :: String -> String
+removeSpace [] = []
+removeSpace (c:cs)
+  | isSpace c = removeSpace cs
+  | otherwise = c : removeSpace cs
 
 -- Parser combinators
 lexeme :: Parser a -> Parser a

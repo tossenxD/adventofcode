@@ -6,7 +6,7 @@
 
 /* @@ PRIVATE FUNCTIONS @@ */
 
-void drop(int i, char *line) { memmove(line, line+i, strlen(line)); }
+void consume(int i, char *line) { memmove(line, line+i, strlen(line)); }
 
 /* @@ EXPORTED FUNCTIONS @@ */
 
@@ -36,7 +36,7 @@ int parse(char (*arr)[C]) {
 
 int digit(char *line) {
   int retval = isdigit(line[0]) ? line[0] - '0' : -1;
-  if (retval != -1) { drop(1, line); }
+  if (retval != -1) { consume(1, line); }
   return retval; // on success, returns digit read
 }
 
@@ -47,20 +47,20 @@ int digits(char *line) {
     retval *= 10;
     retval += line[i++] - '0';
   } if (i == 0) { retval = -1; }
-  else { drop(i, line); }
+  else { consume(i, line); }
   return retval; // on success, returns integer read
 }
 
 void spaces(char *line) {
   int i = 0;
   while (isspace(line[i])) { i++; };
-  drop(i, line);
+  consume(i, line);
 }
 
 int symbol(char *symb, char *line) {
   int len = strlen(symb);
   if (strncmp(symb, line, len) == 0) {
-    drop(len, line);
+    consume(len, line);
     return 0; // on success, returns 0
   } else { return -1; }
 }

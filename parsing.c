@@ -24,6 +24,7 @@ int parse(char (*arr)[C]) {
     arr[i][strlen(arr[i]) - 1] = '\0'; // remove newlines
     i++;
   }
+  fclose(f);
   return i; // on success, return number of lines read
 }
 

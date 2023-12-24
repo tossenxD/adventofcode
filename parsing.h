@@ -8,5 +8,7 @@ void *allocate_lines(void);
 int parse(char (*)[C]);
 int digit(char *);
 int digits(char *);
+void spaces(char *);
+int symbol(char *, char *);
 
 #endif

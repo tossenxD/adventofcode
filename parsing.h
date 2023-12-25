@@ -1,8 +1,8 @@
 #ifndef PARSING
 #define PARSING
 
-#define L 200 // number of lines
-#define C 200 // number characters per line
+#define L 400 // number of lines
+#define C 400 // number characters per line
 
 void *allocate_lines(void);
 int get_lines(char (*)[C]);

@@ -15,7 +15,7 @@ int main(void) {
     if (num_arr == NULL) { continue; }
     len = num_arr[0];
     // downwards propagate
-    while (1) {
+    for (;;) {
       tmp = 0;
       for (j = 1; j < len; j++) {
         tmp += num_arr[j];
@@ -28,8 +28,8 @@ int main(void) {
     }
     // forward propagate
     tmp = num_arr[0];
-    for (; j < tmp; j++) {
-      retval += num_arr[j];
+    while (j < tmp) {
+      retval += num_arr[j++];
     }
     free(num_arr);
   }

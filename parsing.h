@@ -5,10 +5,12 @@
 #define C 200 // number characters per line
 
 void *allocate_lines(void);
-int parse(char (*)[C]);
-int digit(char *);
-int digits(char *);
+int get_lines(char (*)[C]);
 void spaces(char *);
+int digit(char *);
+int number(char *);
+int character(char, char *);
 int symbol(char *, char *);
+int *number_arr(char *);
 
 #endif

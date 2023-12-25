@@ -1,3 +1,6 @@
+CC = gcc
+CFLAGS = -Wall -std=c11 -g -ggdb
+
 all: 1 2 3 4 5 6 7 8
 
 1: 1.hs
@@ -24,5 +27,8 @@ all: 1 2 3 4 5 6 7 8
 8: 8.hs
 	ghc -o 8 8.hs
 
+9: 9.c parsing.c
+	$(CC) $(CFLAGS) 9.c parsing.c -o 9
+
 clean:
-	rm -rf *.o *.hi 1 2 3 4 5 6 7 8
+	rm -rf *.o *.hi 1 2 3 4 5 6 7 8 9 *.out

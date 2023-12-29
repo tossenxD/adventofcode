@@ -1,34 +1,18 @@
 CC = gcc
 CFLAGS = -Wall -std=c11 -g -ggdb
 
-all: 1 2 3 4 5 6 7 8
+HDAYS = 1 2 3 4 5 6 7 8
+CDAYS = 9
 
-1: 1.hs
-	ghc -o 1 1.hs
+.PHONY: $(HDAYS) $(CDAYS)
 
-2: 2.hs
-	ghc -o 2 2.hs
+all: $(HDAYS) $(CDAYS)
 
-3: 3.hs
-	ghc -o 3 3.hs
+$(HDAYS):
+	stack ghc -- $@.hs
 
-4: 4.hs
-	ghc -o 4 4.hs
-
-5: 5.hs
-	ghc -o 5 5.hs
-
-6: 6.hs
-	ghc -o 6 6.hs
-
-7: 7.hs
-	ghc -o 7 7.hs
-
-8: 8.hs
-	ghc -o 8 8.hs
-
-9: 9.c parsing.c
-	$(CC) $(CFLAGS) 9.c parsing.c -o 9
+$(CDAYS):
+	$(CC) $(CFLAGS) $@.c parsing.c -o $@
 
 clean:
-	rm -rf *.o *.hi 1 2 3 4 5 6 7 8 9 *.out
+	rm -rf *.o *.hi *.out $(HDAYS) $(CDAYS)

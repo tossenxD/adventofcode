@@ -3,7 +3,7 @@ module Main where
 import Text.ParserCombinators.Parsec
 import Parsing
 import Data.Char
-import Control.Parallel
+import GHC.Conc
 
 type Description = (Int, Int, Int)
 type Map = (Int -> Int)

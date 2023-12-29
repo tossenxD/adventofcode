@@ -3,7 +3,7 @@ module Main where
 import Text.ParserCombinators.Parsec
 import Parsing
 import Data.Char
-import Control.Parallel
+import GHC.Conc
 
 parseRecords :: Parser [(Int,Int)]
 parseRecords = do spaces; symbol "Time:"; ts <- many1 digits

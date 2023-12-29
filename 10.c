@@ -6,7 +6,7 @@ enum { N, E, S, W };
 
 int main(void) {
   char (*arr)[C] = allocate_lines();
-  int i, j, x, y, d, p, len, retval, tmp, n = get_lines(arr);
+  int i, j, x, y, d, p, len, retval, n = get_lines(arr);
   for (len = 0; arr[0][len] != '\0'; len++) {}
   int mps[n][len];
   for (i = 0; i < n; i++) {
@@ -56,7 +56,7 @@ int main(void) {
     if (x) { break; }
   }
   // p is # of pipes in the pipe-loop
-  p = retval, d = mps[i][j], retval = 0, tmp = 0, n = i, len = j;
+  p = retval, d = mps[i][j], retval = 0, n = i, len = j;
   // find area using shoelace formula - store in retval
   for (;;) {
     // find next point - store in x and y
@@ -71,28 +71,16 @@ int main(void) {
     }
     // compute determinant sum (use tmp since we don't know loop-orientation)
     retval += (i * y) - (j * x);
-    tmp -= (i * y) - (j * x);
     // find new direction or terminate loop
     if (x == n && y == len) {
       break;
     } else {
       i = x, j = y, d = mps[i][j];
     }
-  } retval = (retval < 0 ? tmp : retval) / 2;
+  } retval = (retval < 0 ? -retval : retval) / 2;
   // Use Pick's theorem to compute interior points
   retval -= (p / 2) - 1;
   printf("Part 2: %d\n", retval);
-
-  // pretty printer for debugging
-  /*
-  for (i = 0; i < n; i++) {
-    for (j = 0; j < len; j++) {
-      char c = mps[i][j] == -1 ? '.' : mps[i][j] == W ? 'W' :
-               mps[i][j] == S ? 'S' : mps[i][j] == N ? 'N' : 'E';
-      printf("%c", c);
-    } printf("\n");
-  }
-  */
 
   free(arr);
   return 0;

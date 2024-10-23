@@ -1,7 +1,7 @@
 module Main where
 
 import Data.Char
-import Parsing
+import Common.Parsing
 
 isSpelledDigit :: String -> Int
 isSpelledDigit ('z':'e':'r':'o'    :_) = 0

@@ -1,7 +1,7 @@
 module Main where
 
 import Text.ParserCombinators.Parsec
-import Parsing
+import Common.Parsing
 import Data.Char
 import GHC.Conc
 

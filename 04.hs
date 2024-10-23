@@ -1,7 +1,7 @@
 module Main where
 
 import Text.ParserCombinators.Parsec
-import Parsing
+import Common.Parsing
 
 data Scratchcard = Card Int [Int] [Int]
   deriving (Read, Show, Eq)

@@ -1,18 +1,24 @@
-CC = gcc
-CFLAGS = -Wall -std=c11 -g -ggdb
+HDAYS = 01 02 03 04 05 06 07 08
+CDAYS = 09 10 11
+CPPDAYS = 12
 
-HDAYS = 1 2 3 4 5 6 7 8
-CDAYS = 9 10 11
+WHOLEMONTH = $(HDAYS) $(CDAYS) $(CPPDAYS)
 
-.PHONY: $(HDAYS) $(CDAYS)
+.PHONY: $(WHOLEMONTH)
 
-all: $(HDAYS) $(CDAYS)
+all: $(WHOLEMONTH)
 
 $(HDAYS):
 	stack ghc -- $@.hs
 
 $(CDAYS):
-	$(CC) $(CFLAGS) $@.c parsing.c -o $@
+	gcc -Wall -std=c11 -g -ggdb $@.c Common/parsing.c -o $@
+
+$(CPPDAYS):
+	g++ -Wall -g -ggdb $@.cpp Common/parsing.cpp -o $@
 
 clean:
-	rm -rf *.o *.hi *.out $(HDAYS) $(CDAYS)
+	find -type f -name "*.o" -delete
+	find -type f -name "*.hi" -delete
+	find -type f -name "*~" -delete
+	rm -f $(WHOLEMONTH)

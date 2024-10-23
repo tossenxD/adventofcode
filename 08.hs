@@ -1,6 +1,6 @@
 module Main where
 
-import Parsing
+import Common.Parsing
 import Data.Char
 import Data.Map (Map,(!))
 import qualified Data.Map as Map

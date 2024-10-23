@@ -1,4 +1,4 @@
-module Parsing where
+module Common.Parsing where
 
 import Text.ParserCombinators.Parsec
 import Data.Char

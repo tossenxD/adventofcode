@@ -1,7 +1,7 @@
 module Main where
 
 import Data.Char
-import Parsing
+import Common.Parsing
 
 data Schematic = Symbol Char Int | Number Int (Int,Int) | Part Int (Int,Int)
   deriving (Read, Show, Eq)

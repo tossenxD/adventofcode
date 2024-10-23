@@ -1,7 +1,7 @@
 module Main where
 
 import Text.ParserCombinators.Parsec
-import Parsing
+import Common.Parsing
 
 data Game = Game Int [Colors] | Error
   deriving (Read, Show, Eq)

@@ -1,6 +1,6 @@
 module Main where
 
-import Parsing
+import Common.Parsing
 import Data.Char
 import Data.List
 import Text.ParserCombinators.Parsec

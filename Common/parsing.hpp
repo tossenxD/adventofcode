@@ -19,6 +19,8 @@ public:
     bool parse_char(char c);
     std::size_t parse_chars(char c);
     int parse_int();
+    bool parse_empty_line();
+    bool parse_eof();
     void print_state();
 };
 

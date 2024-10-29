@@ -41,7 +41,7 @@ RETTYPE Parser::incr(size_t jj, RETTYPE retval) {
 
 /* Public parser functions. */
 size_t Parser::num_lines() { return m;                 }
-size_t Parser::len_line()  { return lines[j].length(); }
+size_t Parser::len_line()  { return lines[i].length(); }
 
 bool Parser::parse_char(char c) {
     return lines[i][j] == c ? incr<bool>(1, true) : false;
@@ -64,6 +64,16 @@ int Parser::parse_int() {
         return incr<int>(ii, b);
     }
 }
+
+bool Parser::parse_empty_line() {
+    if (i>= m || len_line() == 0) {
+        i++;
+        return true;
+    } else
+        return false;
+}
+
+bool Parser::parse_eof() { return i >= m; }
 
 void Parser::print_state() {
     std::cout << "parser state:\n\ti\t: " << i << "\n\tj\t: "

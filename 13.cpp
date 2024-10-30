@@ -3,6 +3,8 @@
 #include <cstdint>
 #include <vector>
 
+#define PART 2
+
 typedef uint32_t Row;
 typedef std::vector<Row> Pattern;
 
@@ -29,16 +31,38 @@ size_t transpose(size_t n, Pattern in, Pattern& out) {
 }
 
 int count_reflections_h(Pattern in) {
+#if PART == 1
     int sum = 0;
     for (size_t i = 1; i < in.size(); i++) {
         size_t ii_off = std::min(i, in.size()-i);
         bool reflects = true;
-        for (size_t ii = i - ii_off, iii = 0; ii < i; ii++, iii++)
+        for (size_t ii = i - ii_off, iii = 0; ii < i && reflects; ii++, iii++)
             reflects = reflects && (in[ii] == in[i + ii_off - 1 - iii]);
         if (reflects)
             sum += i;
     }
     return sum;
+
+#elif PART == 2
+    int sum = 0;
+    for (size_t i = 1; i < in.size(); i++) {
+        size_t ii_off = std::min(i, in.size()-i);
+        Row total_diff = 0;
+        size_t num_diff = 0;
+        for (size_t ii = i - ii_off, iii = 0; ii<i && num_diff<2; ii++,iii++) {
+            Row r0 = in[ii];
+            Row r1 = in[i + ii_off - 1 - iii];
+            total_diff += r0 ^ r1;
+            num_diff += r0 != r1;
+        }
+        if (num_diff == 1 && (total_diff & (total_diff - 1)) == 0)
+            sum += i;
+    }
+    return sum;
+
+#else
+    return -1;
+#endif
 }
 
 int count_reflections_v(size_t n, Pattern in) {

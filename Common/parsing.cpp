@@ -47,6 +47,11 @@ bool Parser::parse_char(char c) {
     return lines[i][j] == c ? incr<bool>(1, true) : false;
 }
 
+char Parser::parse_some_char() {
+    char retval = lines[i][j];
+    return incr<char>(1, retval);
+}
+
 size_t Parser::parse_chars(char c) {
     size_t retval = 0;
     while (j <  lines[i].length() && lines[i][j] == c) { j++; retval++; }

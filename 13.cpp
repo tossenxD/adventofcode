@@ -3,6 +3,8 @@
 #include <cstdint>
 #include <vector>
 
+// No comments since right hand is injured and therefore am slow at writing
+
 #define PART 2
 
 typedef uint32_t Row;

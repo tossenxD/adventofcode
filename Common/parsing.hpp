@@ -17,6 +17,7 @@ public:
     std::size_t num_lines();
     std::size_t len_line();
     bool parse_char(char c);
+    char parse_some_char();
     std::size_t parse_chars(char c);
     int parse_int();
     bool parse_empty_line();

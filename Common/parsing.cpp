@@ -78,7 +78,14 @@ bool Parser::parse_empty_line() {
         return false;
 }
 
-bool Parser::parse_eof() { return i >= m; }
+bool Parser::is_eof() {
+    return i >= m;
+}
+
+bool Parser::is_letter() {
+    char c = lines[i][j];
+    return ('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z');
+}
 
 void Parser::print_state() {
     std::cout << "parser state:\n\ti\t: " << i << "\n\tj\t: "

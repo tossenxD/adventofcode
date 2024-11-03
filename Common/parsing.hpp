@@ -21,7 +21,8 @@ public:
     std::size_t parse_chars(char c);
     int parse_int();
     bool parse_empty_line();
-    bool parse_eof();
+    bool is_eof();
+    bool is_letter();
     void print_state();
 };
 

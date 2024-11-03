@@ -81,7 +81,7 @@ int count_reflections(size_t n, Pattern in) {
 int main() {
     Parser in("in/13.in");
     int sum = 0;
-    while(!in.parse_eof()) {
+    while(!in.is_eof()) {
         Pattern pattern;
         size_t n = in.len_line();
         do {

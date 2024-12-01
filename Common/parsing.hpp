@@ -24,6 +24,7 @@ public:
     bool is_eof();
     bool is_letter();
     void print_state();
+    void reset_state();
 };
 
 #endif

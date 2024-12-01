@@ -93,3 +93,7 @@ void Parser::print_state() {
     for (string & line : lines)
         std::cout << line << "\n";
 }
+
+void Parser::reset_state() {
+    i = 0; j = 0;
+}

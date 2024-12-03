@@ -1,5 +1,6 @@
 #ifndef PARSING
 #define PARSING
+#include "datastruct.hpp"
 #include <vector>
 #include <string>
 

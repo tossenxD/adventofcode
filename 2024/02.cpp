@@ -1,10 +1,8 @@
 #include "Common/parsing.hpp"
-#include "Common/datastruct.hpp"
+#include "Common/defs.hpp"
 #include <iostream>
 #include <vector>
 #include <cstdint>
-
-#define DISTANCE(x, y) ((x - y >= 0) ? x - y : y - x)
 
 typedef std::vector<i32> Report;
 
@@ -44,18 +42,26 @@ int main() {
     safe_count = 0;
     while (!in.is_eof()) {
         Report report = parse_report(in);
-        if (is_safe_report( Report(report.begin()+1, report.end()) ))
+        // Case 1: The bad level is the first level
+        Report report_shrunk = Report(report.begin()+1, report.end());
+        if (is_safe_report(report_shrunk))
             safe_count++;
+        // Case 2: The bad level is the second level
         else {
-            bool is_safe = true;
-            bool is_increasing = report[0] < report[1];
-            for (st i = 0; i < report.size()-1 && is_safe; i++) {
-                is_safe = is_safe && is_safe_lvls(report[i], report[i+1], is_increasing);
-                if (!is_safe)
-                    report.erase(report.begin()+i+1);
-            }
-            if (is_safe || is_safe_report(report))
+            report_shrunk[0] = report[0];
+            if (is_safe_report( report_shrunk))
                 safe_count++;
+        // Case 3: The bad level is a second level of a consecutive pairwise combination of levels
+            else {
+                bool is_increasing = report[0] < report[1];
+                for (st i = 1; i < report.size()-1; i++)
+                    if (!is_safe_lvls(report[i], report[i+1], is_increasing)) {
+                        report.erase(report.begin()+i+1);
+                        break;
+                    }
+                if (is_safe_report(report))
+                    safe_count++;
+            }
         }
     }
     std::cout << "part2: " << safe_count << std::endl;

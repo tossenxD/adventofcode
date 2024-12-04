@@ -1,10 +1,9 @@
 #include "Common/parsing.hpp"
+#include "Common/defs.hpp"
 #include <vector>
 #include <algorithm>
 #include <iostream>
 #include <cstdint>
-
-#define DISTANCE(x, y) ((x - y >= 0) ? x - y : y - x)
 
 std::int32_t count(std::int32_t y, std::vector<std::int32_t> v) {
     std::int32_t c = 0;

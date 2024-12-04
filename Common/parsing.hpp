@@ -14,18 +14,26 @@ class Parser {
     template<class RETTYPE>
     RETTYPE incr(size_t jj, RETTYPE retval);
 public:
+    // Constructor
     Parser(std::string fname);
+
+    // Internal state
     std::size_t num_lines();
     std::size_t len_line();
-    bool parse_char(char c);
-    char parse_some_char();
+    bool        is_eof();
+    bool        is_letter();
+    void        print_state();
+    void        reset_state();
+
+    // Parsers
+    bool        parse_char(char c);
     std::size_t parse_chars(char c);
-    int parse_int();
-    bool parse_empty_line();
-    bool is_eof();
-    bool is_letter();
-    void print_state();
-    void reset_state();
+    char        parse_some_char();
+    int         parse_int();
+    bool        parse_empty_line();
+
+    // Functional applications
+    std::string apply_regex(std::regex);
 };
 
 #endif

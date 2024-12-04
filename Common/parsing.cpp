@@ -97,3 +97,7 @@ void Parser::print_state() {
 void Parser::reset_state() {
     i = 0; j = 0;
 }
+
+string Parser::apply_regex(std::regex re) {
+    return "placeholder";
+}

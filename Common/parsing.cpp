@@ -99,5 +99,20 @@ void Parser::reset_state() {
 }
 
 string Parser::apply_regex(std::regex re) {
-    return "placeholder";
+    string substr = lines[i].substr(j);
+    std::smatch match;
+    if (regex_search(substr, match, re))
+        return match.str();
+    else
+        return "";
+}
+
+void Parser::apply_regex_sum(std::regex re, std::function<void(std::string)> lambda) {
+    string substr = lines[i].substr(j);
+    std::smatch match;
+    while (regex_search(substr, match, re)) {
+        lambda(match.str());
+        substr = match.suffix().str();
+    }
+    j = 0; i++;
 }

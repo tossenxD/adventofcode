@@ -3,6 +3,7 @@
 #include "datastruct.hpp"
 #include <vector>
 #include <string>
+#include <regex>
 
 /* Internally, a parser consists of the vector of `n`-lenghted strings called
    `lines`, s.t. `lines[i][j]` denotes the `j`th character of the `i`th line
@@ -33,7 +34,8 @@ public:
     bool        parse_empty_line();
 
     // Functional applications
-    std::string apply_regex(std::regex);
+    std::string apply_regex(std::regex re);
+    void        apply_regex_sum(std::regex re, std::function<void(std::string)> lambda);
 };
 
 #endif

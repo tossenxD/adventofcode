@@ -25,6 +25,7 @@ public:
     bool        is_letter();
     void        print_state();
     void        reset_state();
+    std::vector<std::string> data();
 
     // Parsers
     bool        parse_char(char c);
@@ -34,7 +35,6 @@ public:
     bool        parse_empty_line();
 
     // Functional applications
-    std::string apply_regex(std::regex re);
     void        apply_regex_sum(std::regex re, std::function<void(std::string)> lambda);
 };
 

@@ -98,13 +98,8 @@ void Parser::reset_state() {
     i = 0; j = 0;
 }
 
-string Parser::apply_regex(std::regex re) {
-    string substr = lines[i].substr(j);
-    std::smatch match;
-    if (regex_search(substr, match, re))
-        return match.str();
-    else
-        return "";
+std::vector<string> Parser::data() {
+    return lines;
 }
 
 void Parser::apply_regex_sum(std::regex re, std::function<void(std::string)> lambda) {

@@ -1,10 +1,7 @@
 #include "Common/parsing.hpp"
 #include "Common/defs.hpp"
 #include <iostream>
-#include <regex>
-#include <string>
-#include <map>
-#include <set>
+#include <vector>
 
 #define TURN(dir) ((dir == N) ? E : (dir == E) ? S : (dir == S) ? W : N)
 
@@ -38,7 +35,7 @@ bool detect_cycle(std::vector<std::vector<u8>> grid, st n, st m, Position pos, D
 }
 
 int main() {
-    /* PART 1 */
+    /* PARSING */
     Parser in("in/06.in");
     Direction dir;
     Position pos;
@@ -67,6 +64,8 @@ int main() {
     // save position and direction for part 2
     Position  start_pos = pos;
     Direction start_dir = dir;
+
+    /* PART 1 */
     // begin traversal loop
     while (!IS_ABOUT_TO_EXIT(pos, n, m, dir)) {
         Position npos = ADVANCE(pos, dir);

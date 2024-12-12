@@ -4,6 +4,7 @@
 
 /** Types **/
 
+// Integrals
 typedef std::int8_t    i8;
 typedef std::int16_t  i16;
 typedef std::int32_t  i32;
@@ -15,8 +16,12 @@ typedef std::uint32_t u32;
 typedef std::uint64_t u64;
 typedef std::size_t    st;
 
+// Positioning
+enum Direction { N, E, S, W };
+typedef std::pair<u32,u32> Position;
+
 /** Macros **/
 
-#define DISTANCE(x, y) ((x - y >= 0) ? x - y : y - x)
+#define DISTANCE(x, y) ((x > y) ? x - y : y - x)
 
 #endif

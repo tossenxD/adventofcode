@@ -70,6 +70,17 @@ int Parser::parse_int() {
     }
 }
 
+long long Parser::parse_i64() {
+    if (lines[i][j] < '1' || lines[i][j] > '9') {
+        return 0xDEADBEEF;
+    } else {
+        const string l = lines[i].substr(j);
+        size_t ii;
+        long long b = std::stol(l, &ii);
+        return incr<long long>(ii, b);
+    }
+}
+
 bool Parser::parse_empty_line() {
     if (i>= m || len_line() == 0) {
         i++;

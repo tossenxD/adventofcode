@@ -1,6 +1,5 @@
 #ifndef PARSING
 #define PARSING
-#include "datastruct.hpp"
 #include <vector>
 #include <string>
 #include <regex>
@@ -32,6 +31,7 @@ public:
     std::size_t parse_chars(char c);
     char        parse_some_char();
     int         parse_int();
+    long long   parse_i64();
     bool        parse_empty_line();
 
     // Functional applications

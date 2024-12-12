@@ -37,8 +37,8 @@ bool detect_cycle(std::vector<std::vector<u8>> grid, st n, st m, Position pos, D
 int main() {
     /* PARSING */
     Parser in("in/06.in");
-    Direction dir;
-    Position pos;
+    Direction dir{};
+    Position pos{};
     st n = in.num_lines();
     st m = in.len_line();
     // bit 1 is obstacles and bit 2 traversed path

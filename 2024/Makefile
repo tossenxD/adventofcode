@@ -1,4 +1,4 @@
-CPPDAYS = 01 02 03 04 05 06
+CPPDAYS = 01 02 03 04 05 06 07
 
 WHOLEMONTH = $(CPPDAYS)
 
@@ -7,7 +7,7 @@ WHOLEMONTH = $(CPPDAYS)
 all: $(WHOLEMONTH)
 
 $(CPPDAYS):
-	g++ -Wall -std=c++20 -g -ggdb $@.cpp Common/parsing.cpp -o $@
+	g++ -O2 -Wall -std=c++20 -g -ggdb $@.cpp Common/parsing.cpp -o $@
 
 clean:
 	find -type f -name "*.o" -delete

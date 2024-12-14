@@ -81,6 +81,13 @@ long long Parser::parse_i64() {
     }
 }
 
+std::uint8_t Parser::parse_digit() {
+    if (lines[i][j] < '0' || lines[i][j] > '9')
+        return 0xFF;
+    else
+        return incr<std::uint8_t> (1, static_cast<std::uint8_t>(lines[i][j] - '0'));
+}
+
 bool Parser::parse_empty_line() {
     if (i>= m || len_line() == 0) {
         i++;
